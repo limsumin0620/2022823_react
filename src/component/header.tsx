@@ -1,15 +1,21 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 interface HeaderPops {
-    headerName : string
+    headerName : string,
+    isHome : boolean
 }
 
-const Header = ({headerName}:HeaderPops) => {
+const Header = ({headerName, isHome}:HeaderPops) => {
     return (
+        <>
         <div className='header'>
-            <h2 style={{padding : '40px', color : '#404040'}}>
+            {isHome === false ? <Link to={`/`} className='btn1' style={{margin:'10px'}}>홈으로</Link> : ''
+            }
+            <h2 style={{margin : '40px', float : 'left', color : '#404040'}}>
                 {headerName}
             </h2>
         </div>
+        </>
     );
 };
 

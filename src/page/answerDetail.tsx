@@ -1,8 +1,9 @@
 import * as React from 'react';
 import axios from 'axios';
-import {useParams, useNavigate, useSearchParams } from "react-router-dom";
+import { useParams, Link, useSearchParams } from "react-router-dom";
 import 'css/common.css';
-import Header from 'component/header';
+import Header from 'component/Header';
+import { CivilAnswerItem } from 'interface/CivilAnswerInterface';
 
 const AnswerDetail = () => {
   // useSearchParams 쿼리스트링 값을 알 수 있음
@@ -12,12 +13,11 @@ const AnswerDetail = () => {
   // const searchKeyword = searchParams.get('searchKeyword');
   
   // useParams 를 이용하면 url 의 파라미터 값을 알 수 있음
-  const {gch_rcept_no} = useParams();
-  const [answerDetail , setAnswerDetail] = React.useState<any>([]);
-  let navigate = useNavigate();
+  const {gchRceptNo} = useParams();
+  const [answerDetail , setAnswerDetail] = React.useState<CivilAnswerItem>();
 	const fetchAnswerDetail = async () => {
 		try {
-			const response = await axios.get(`http://192.168.10.70:8080/socsoft/civil/civilAnswerDetail.do?gch_rcept_no=${gch_rcept_no}`);
+			const response = await axios.get(`http://192.168.10.70:8080/socsoft/civil/civilAnswerDetail.do?gchRceptNo=${gchRceptNo}`);
 			if(response.status === 200 && response.data.data){
 				setAnswerDetail(response.data.data);
 			}
@@ -32,7 +32,7 @@ const AnswerDetail = () => {
 
   return (
     <>
-		<Header headerName=''/>
+		<Header headerName='' isHome={false}/>
     <div className='content'>
     {
     answerDetail ? (
@@ -42,16 +42,16 @@ const AnswerDetail = () => {
             <tbody>
                 <tr>
                     <th>민원제목</th>
-                    <td>{ answerDetail.gch_title }</td>
+                    <td>{ answerDetail.gchTitle }</td>
                 </tr>
                 <tr >
                     <th>민원 등록일자</th>
-                    <td>{ answerDetail.gch_creat_dt }</td>
+                    <td>{ answerDetail.gchCreatDt }</td>
                 </tr>
                 <tr >
                     <td colSpan={2}>
                         {
-                        answerDetail.gch_cn
+                        answerDetail.gchCn
                         }
                     </td>
                 </tr>
@@ -65,22 +65,22 @@ const AnswerDetail = () => {
             <tbody>
                 <tr >
                     <th>처리부서</th>
-                    <td>{ answerDetail.gch_process_dept }</td>
+                    <td>{ answerDetail.gchProcessDept }</td>
                 </tr>
                 <tr >
                     <th>민원 답변일자</th>
-                    <td>{ answerDetail.gch_reply_dt }</td>
+                    <td>{ answerDetail.gchReplyDt }</td>
                 </tr>
                 <tr >
                     <td colSpan={2}>
                         {
-                        answerDetail.gch_reply_cn
+                        answerDetail.gchReplyCn
                         }
                     </td>
                 </tr>
             </tbody>
         </table>
-        <button className='btn1' onClick={()=>{ navigate(-1) }}>목록으로 돌아가기</button>
+        <Link className='btn1' to={`/answerBoard`}>목록으로 돌아가기</Link>
         {/* <button className='btn1' onClick={()=>{
           navigate('/', {state: {gchMinwonCl: gchMinwonCl,
             gchProcessDept: gchProcessDept,

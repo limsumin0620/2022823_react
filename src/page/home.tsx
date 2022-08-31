@@ -1,15 +1,16 @@
 import * as React from 'react';
-import Header from 'component/header';
+import Header from 'component/Header';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-    // const [pagination , setPagination] = React.useState<Array<PagenationInterface>>([]);
-
     return (
         <>
-        <Header headerName="Home"/>
+        <Header headerName="Home" isHome={true} />
         <div className='content'>
-            <Link to={'/currentPage='}>민원 게시판</Link>
+            <ul style={{lineHeight: '2em'}}>
+                <li><Link to={`/answerBoard`}>민원 게시판</Link></li>
+                <li><Link to={`/testBoard`}>테스트 게시판</Link></li>
+            </ul>
         </div>
         </>
     )

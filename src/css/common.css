@@ -1,15 +1,15 @@
 .header {
 	background-color: #c2d0db;
     width: 80%;
-    margin: 0 auto;
+    margin: 10px auto;
 	height: 120px;
-	min-width: 1015px;
+	min-width: 1060px;
 }
 
 .content {
 	width: 80%;
 	margin: 0 auto;
-	min-width: 1015px;
+	min-width: 1060px;
 }
 
 .tableWrap {
@@ -128,13 +128,14 @@ img {
 	padding: 5px 17px;
 	margin: 5px 3px;
 	text-align: center;
-	background-color: #6791a7 !important;
+	background-color: #6791a7;
 	border: 1px #6791a7 solid;
 	border-radius: 10px;
 	font-size: 13px;
 	font-weight: bold;
 	cursor: pointer;
 	float: right;
+	text-decoration: none;
 }
 
 /* search */
@@ -155,7 +156,7 @@ span {
 	line-height: 34px;
 	border: 1px solid #dee1e7;
 	padding-left: 10px;
-	margin: 10px;
+	margin: 0px 10px;
 }
 
 /* page */
